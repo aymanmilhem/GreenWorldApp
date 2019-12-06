@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="GreenWorldApp.Views.MainMenu">
+        <StackLayout>
+            <Image Source="ImagePlaceholder"
+                   Aspect="AspectFill"/>
+            <Button x:Name="MainPageLoginButton"
+                    Text="Login"
+                    Clicked="MainPageLoginButton_Clicked" />
+            <Button x:Name="MainPageSignUpButton"
+                    Text="Sign Up"
+                    Clicked="MainPageSignUpButton_OnClicked" />
+            <Button x:Name="MainPageProfileButton"
+                    Text="Profile"
+                    Clicked="MainPageProfileButton_Clicked"/>
+            <Button x:Name="MainPageRecordTasksButton"
+                    Text="Record Tasks"
+                    Clicked="MainPageRecordTasksButton_Clicked"/>
+            <Button x:Name="MainPageBrowseAsGuestButton"
+                    Text="Browse List as a guest"
+                    Clicked="MainPageBrowseAsGuestButton_Clicked"/>
+            <Button x:Name="MainPageUserListButton"
+                    Text="User List"
+                    FontAttributes="Bold"
+                    BackgroundColor="Aquamarine"
+                    Clicked="MainPageUserListButton_Clicked"/>
+
+        </StackLayout>
+</ContentPage>
