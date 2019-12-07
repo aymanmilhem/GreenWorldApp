@@ -4,13 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GreenWorldApp.Models;
 using SQLite;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using RefreshView = Xamarin.Forms.PlatformConfiguration.WindowsSpecific.RefreshView;
 
-namespace GreenWorldApp.Views
+namespace GreenWorldApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UserList : ContentPage
@@ -18,13 +17,13 @@ namespace GreenWorldApp.Views
         private ListView _listView;
         private Button _deleteButton;
         private User _user;
-        string dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "myBD.db3");
+        private string _dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "myBD.db3");
         public UserList()
         {
             InitializeComponent();
             this.Title = "User List";
 
-            var db = new SQLiteConnection(dbPath);
+            var db = new SQLiteConnection(_dbPath);
 
             StackLayout stackLayout = new StackLayout();
             _listView = new ListView();
@@ -43,10 +42,11 @@ namespace GreenWorldApp.Views
 
         private async void User_List_deleteButton_Clicked(object sender, EventArgs e)
         {
-            var db = new SQLiteConnection(dbPath);
+            var db = new SQLiteConnection(_dbPath);
 
             _listView.BeginRefresh();
             db.Table<User>().Delete(x => x.Id == _user.Id);
+
             _deleteButton.IsEnabled = false;
 
             /*to get the listview to refresh after deletion, this is the way*/
@@ -56,6 +56,7 @@ namespace GreenWorldApp.Views
             /*this does it but it flashes the main page for half a second*/
             //Navigation.RemovePage(this);
             //await Navigation.PushAsync(new UserList());
+            
             _listView.EndRefresh();
         }
 

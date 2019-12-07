@@ -1,5 +1,4 @@
 ﻿using System;
-using GreenWorldApp.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

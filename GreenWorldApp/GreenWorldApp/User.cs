@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 using SQLite;
 
-namespace GreenWorldApp.Models
+namespace GreenWorldApp
 {
     public class User
     {

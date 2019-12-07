@@ -4,12 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GreenWorldApp.Models;
 using SQLite;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace GreenWorldApp.Views
+namespace GreenWorldApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SignUp : ContentPage
@@ -21,7 +20,7 @@ namespace GreenWorldApp.Views
         private bool _isInTable = false;
         private bool _passwordMatches;
 
-        private string dBPath =
+        private string _dBPath =
             Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "myBD.db3");
 
         public SignUp()
@@ -31,7 +30,7 @@ namespace GreenWorldApp.Views
 
         private async void Button_SignUp_Clicked(object sender, EventArgs e)
         {
-            var db = new SQLiteConnection(dBPath);
+            var db = new SQLiteConnection(_dBPath);
             db.CreateTable<User>();
 
             var maxPK = db.Table<User>().OrderByDescending(c => c.Id).FirstOrDefault();

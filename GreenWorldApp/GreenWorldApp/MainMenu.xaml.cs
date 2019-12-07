@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace GreenWorldApp.Views
+namespace GreenWorldApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainMenu : ContentPage
@@ -18,7 +18,7 @@ namespace GreenWorldApp.Views
         }
         private async void MainPageLoginButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MainPage());
+            await Navigation.PushAsync(new LoginPage());
         }
 
         private async void MainPageProfileButton_Clicked(object sender, EventArgs e)
@@ -28,7 +28,7 @@ namespace GreenWorldApp.Views
 
         private async void MainPageRecordTasksButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MainPage());
+            await Navigation.PushAsync(new RecordTaskPage());
         }
 
         private async void MainPageBrowseAsGuestButton_Clicked(object sender, EventArgs e)

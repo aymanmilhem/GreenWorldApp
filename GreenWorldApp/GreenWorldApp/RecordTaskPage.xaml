@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:greenWorldApp="clr-namespace:GreenWorldApp;assembly=GreenWorldApp"
+             mc:Ignorable="d"
+             x:Class="GreenWorldApp.RecordTaskPage">
+    
+
+    <StackLayout>
+        <ListView ItemsSource="{Binding AllTasks}"
+            HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="0,20,10,20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="{Binding Name}"/>
+                            <CheckBox Grid.Row="0"
+                                      Grid.Column="1"
+                                      IsChecked="False"
+                                      HorizontalOptions="End"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <!--<Label Text="Fucking Hell!!"/>-->
+        <StackLayout>
+            <Button Text="Submit" 
+                    CornerRadius="11"
+                    FontAttributes="Bold"
+                    TextColor="Aqua"
+                    BackgroundColor="Black"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="Fill"
+                     Margin="0,10,0,0">
+        <Button Text="Profile"
+                HorizontalOptions="CenterAndExpand"
+                CornerRadius="11"/>
+        <Button Text="List"/>
+        <Button Text="Record Task"/>
+        </StackLayout>
+    </StackLayout>
+
+
+</ContentPage>
