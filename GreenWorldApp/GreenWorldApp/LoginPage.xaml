@@ -5,8 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="GreenWorldApp.LoginPage">
-        <StackLayout VerticalOptions="FillAndExpand"
-                     HorizontalOptions="CenterAndExpand">
+        <StackLayout>
             <Image Source="ImagePlaceholder"
                    Aspect="AspectFill"/>
             <Entry x:Name="UsernameEntry"

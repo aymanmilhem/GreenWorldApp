@@ -3,13 +3,93 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:greenWorldApp="clr-namespace:GreenWorldApp;assembly=GreenWorldApp"
              mc:Ignorable="d"
              x:Class="GreenWorldApp.ProfilePage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Your Profile!!!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout x:Name="MainStackLayout">
+            <StackLayout x:Name="TopHorizontalStackLayout"
+                         Orientation="Horizontal">
+                <Image Source="genericProfileImage"/>
+                <StackLayout>
+                    <Label Text="Name"/>
+                    <Label Text="Name"/>
+                    <Label Text="Name"/>
+                    <Label Text="Name"/>
+                    <Label Text="Name"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout >
+                <Grid Padding="5,5,0,5"
+                      Margin="0,0,0,5"
+                      BackgroundColor="Bisque">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Task"
+                           HorizontalOptions="StartAndExpand"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+                    <Label Text="Completed On"
+                           HorizontalOptions="EndAndExpand"
+                           Grid.Row="0"
+                           Grid.Column="1"/>
+                </Grid>
+            </StackLayout>
+
+            <ListView ItemsSource="{Binding AllUserCompletedTasks}"
+                      HasUnevenRows="True"
+                      x:Name="ListViewElement">
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell >
+                            <Grid Padding="5,5,0,5"
+                              Margin="0,0,0,5"
+                              BackgroundColor="AliceBlue">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0"
+                                       Grid.Column="0"
+                                       Text="{Binding Name}"
+                                       FontAttributes="Bold"
+                                       TextDecorations="Underline"
+                                       TextColor="ForestGreen"
+                                       FontSize="Default"
+                                       HorizontalOptions="Start"/>
+                                <Label Grid.Row="0"
+                                   Grid.Column="1"
+                                   Text="{Binding CompletionDate, StringFormat='{0:dd/MM/yyyy}'}"
+                                   HorizontalOptions="End" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!--<StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Task"/>
+                    <Label Text="Date"/>
+                </StackLayout>
+                <Label Text="WHY??"/>
+                <Label Text="{Binding AllUserCompletedTasks[2].CompletionDate}"/>
+            </StackLayout>-->
+            <StackLayout Orientation="Horizontal">
+                <Button Text=""/>
+                <Button Text=""/>
+                <Button Text=""/>
+                <Button Text="Delete All"
+                        Clicked="Button_Delete_All_Tasks"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

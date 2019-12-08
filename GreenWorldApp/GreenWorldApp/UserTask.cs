@@ -16,6 +16,8 @@ namespace GreenWorldApp
 
         public int CompletedByUserId { get; set; }
 
+        public bool IsChecked { get; set; }
+
         public UserTask()
         {
             

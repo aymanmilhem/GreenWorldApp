@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Xml.XPath;
+using SQLite;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,6 +14,9 @@ namespace GreenWorldApp
     public partial class RecordTaskPage : ContentPage
     {
         public IList<UserTask> AllTasks { get; set; }
+
+        private string _dBPath =
+            Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "myDB.db3");
         public RecordTaskPage()
         {
             InitializeComponent();
@@ -18,13 +26,11 @@ namespace GreenWorldApp
             AllTasks.Add(new UserTask
             {
                 Name = "Eat Less Meat",
-                CompletionDate = new DateTime(2019, 11, 3)
             });
 
             AllTasks.Add(new UserTask
             {
                 Name = "Recycle More",
-                CompletionDate = new DateTime(2018, 3, 4)
             });
 
             AllTasks.Add(new UserTask
@@ -35,7 +41,6 @@ namespace GreenWorldApp
             AllTasks.Add(new UserTask
             {
                 Name = "Start Composting",
-                CompletionDate = new DateTime(2019, 1, 30)
             });
 
             AllTasks.Add(new UserTask
@@ -69,6 +74,40 @@ namespace GreenWorldApp
             });
 
             BindingContext = this;
+        }
+
+        
+        private async void Button_Submit_Record_Tasks_Clicked(object sender, EventArgs e)
+        {
+            var db = new SQLiteConnection(_dBPath);
+            db.CreateTable<UserTask>();
+
+            var maxPK = db.Table<UserTask>().OrderByDescending(c => c.Id).FirstOrDefault();
+
+            List<UserTask> selectedList = new List<UserTask>();
+
+            for (int i = 0; i < AllTasks.Count; i++)
+            {
+                UserTask item = AllTasks[i];
+
+                if (item.IsChecked == true)
+                {
+                    selectedList.Add(item);
+                }
+            }
+
+            for (int i = 0; i < selectedList.Count; i++)
+            {
+                UserTask completedTask = new UserTask
+                {
+                    Name = selectedList[i].Name,
+                    CompletionDate = DateTime.Today
+                };
+                db.Insert(completedTask);
+            }
+            await DisplayAlert(null, "In total, you have submitted " + selectedList.Count + " tasks today", "OK");
+            await Navigation.PopAsync();
+
 
         }
     }

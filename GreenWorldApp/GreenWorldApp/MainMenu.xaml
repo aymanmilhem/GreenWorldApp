@@ -6,28 +6,37 @@
              mc:Ignorable="d"
              x:Class="GreenWorldApp.MainMenu">
         <StackLayout>
-            <Image Source="ImagePlaceholder"
-                   Aspect="AspectFill"/>
-            <Button x:Name="MainPageLoginButton"
-                    Text="Login"
-                    Clicked="MainPageLoginButton_Clicked" />
-            <Button x:Name="MainPageSignUpButton"
-                    Text="Sign Up"
-                    Clicked="MainPageSignUpButton_OnClicked" />
-            <Button x:Name="MainPageProfileButton"
-                    Text="Profile"
-                    Clicked="MainPageProfileButton_Clicked"/>
-            <Button x:Name="MainPageRecordTasksButton"
-                    Text="Record Tasks"
-                    Clicked="MainPageRecordTasksButton_Clicked"/>
-            <Button x:Name="MainPageBrowseAsGuestButton"
-                    Text="Browse List as a guest"
-                    Clicked="MainPageBrowseAsGuestButton_Clicked"/>
-            <Button x:Name="MainPageUserListButton"
-                    Text="User List"
-                    FontAttributes="Bold"
-                    BackgroundColor="Aquamarine"
-                    Clicked="MainPageUserListButton_Clicked"/>
+            <StackLayout HorizontalOptions="Center"
+                         VerticalOptions="Center">
+            <Image Source="genericProfileImage"
+                   Aspect="AspectFill"
+                   HeightRequest="200"
+                   WidthRequest="200"/>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="EndAndExpand">
+                <Button x:Name="MainPageLoginButton"
+                        Text="Login"
+                        Clicked="MainPageLoginButton_Clicked" />
+                <Button x:Name="MainPageSignUpButton"
+                        Text="Sign Up"
+                        Clicked="MainPageSignUpButton_OnClicked" />
+                <Button x:Name="MainPageProfileButton"
+                        Text="Profile"
+                        Clicked="MainPageProfileButton_Clicked"/>
+                <Button x:Name="MainPageRecordTasksButton"
+                        Text="Record Tasks"
+                        Clicked="MainPageRecordTasksButton_Clicked"/>
+                <Button x:Name="MainPageBrowseAsGuestButton"
+                        Text="Browse List as a guest"
+                        Clicked="MainPageBrowseAsGuestButton_Clicked"/>
+                <Button x:Name="MainPageUserListButton"
+                        Text="User List"
+                        FontAttributes="Bold"
+                        BackgroundColor="Aquamarine"
+                        Clicked="MainPageUserListButton_Clicked"/>
+        </StackLayout>
+            
 
         </StackLayout>
 </ContentPage>

@@ -6,53 +6,47 @@
              xmlns:greenWorldApp="clr-namespace:GreenWorldApp;assembly=GreenWorldApp"
              mc:Ignorable="d"
              x:Class="GreenWorldApp.RecordTaskPage">
-    
-
     <StackLayout>
         <ListView ItemsSource="{Binding AllTasks}"
             HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="0,20,10,20">
+                        <Grid Padding="10,20,10,20">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Row="0"
+                            <Label x:Name="Name_Label"
+                                   Grid.Row="0"
                                    Grid.Column="0"
                                    Text="{Binding Name}"/>
                             <CheckBox Grid.Row="0"
                                       Grid.Column="1"
-                                      IsChecked="False"
-                                      HorizontalOptions="End"/>
+                                      IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                                      HorizontalOptions="End"
+                                      x:Name="CheckBox"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
+                
             </ListView.ItemTemplate>
         </ListView>
-        <!--<Label Text="Fucking Hell!!"/>-->
         <StackLayout>
             <Button Text="Submit" 
                     CornerRadius="11"
                     FontAttributes="Bold"
-                    TextColor="Aqua"
-                    BackgroundColor="Black"/>
+                    Clicked="Button_Submit_Record_Tasks_Clicked"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="Fill"
-                     Margin="0,10,0,0">
-        <Button Text="Profile"
-                HorizontalOptions="CenterAndExpand"
-                CornerRadius="11"/>
+                     HorizontalOptions="CenterAndExpand"
+                     Margin="5,10,5,0">
+        <Button Text="Profile"/>
         <Button Text="List"/>
         <Button Text="Record Task"/>
         </StackLayout>
     </StackLayout>
-
-
 </ContentPage>

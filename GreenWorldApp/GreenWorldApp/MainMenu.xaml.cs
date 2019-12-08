@@ -23,7 +23,7 @@ namespace GreenWorldApp
 
         private async void MainPageProfileButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new  MainPage());
+            await Navigation.PushAsync(new  ProfilePage());
         }
 
         private async void MainPageRecordTasksButton_Clicked(object sender, EventArgs e)
