@@ -4,21 +4,94 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="GreenWorldApp.SignUp">
-    <StackLayout VerticalOptions="Center"
-                 HorizontalOptions="Center">
-        <Image Source="ImagePlaceholder"
-               Aspect="AspectFill" />
-        <Entry x:Name="SignUpEmailEntry"
-               Placeholder="Email" />
-        <Entry x:Name="SignUpPasswordEntry"
-               Placeholder="Password"
-               IsPassword="True"/>
-        <Entry x:Name="SignUpPasswordVerificationEntry"
-               Placeholder="Re-enter Password"
-               IsPassword="True"/>
-        <Button x:Name="SignUpButton"
-                Text="Sign up" 
-                Clicked="Button_SignUp_Clicked"/>
+             x:Class="GreenWorldApp.SignUp"
+             Title="Sign Up">
+    <StackLayout >
+        <StackLayout>
+            <Grid BackgroundColor="Black"
+                  HorizontalOptions="Fill">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1"
+                       Text="A Greener Pale Blue Dot"
+                       TextColor="#35C393"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center" />
+                <Image Grid.Column="2"
+                       Source="UnitedOnEarth"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"
+                       Aspect="AspectFit"
+                       WidthRequest="60"
+                       HeightRequest="40" />
+            </Grid>
+        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Row="0"
+                   Grid.Column="1"
+                   Source="MainTheme" Aspect="AspectFill" />
+        </Grid>
+        <!--<StackLayout VerticalOptions="CenterAndExpand">-->
+
+            <Grid VerticalOptions="CenterAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Entry Grid.Row="0"
+                       Grid.Column="1"
+                       x:Name="SignUpEmailEntry"
+                       Placeholder="Email"/>
+                <Entry Grid.Row="1"
+                       Grid.Column="1"
+                       x:Name="SignUpPasswordEntry"
+                       Placeholder="Password"
+                       IsPassword="True" />
+                <Entry Grid.Row="2"
+                       Grid.Column="1"
+                       x:Name="SignUpPasswordVerificationEntry"
+                       Placeholder="Re-enter Password"
+                       IsPassword="True" />
+                <Grid Grid.Row="3"
+                      Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0"
+                            Grid.Column="1"
+                            x:Name="SignUpButton"
+                            Text="Sign up"
+                            Clicked="Button_SignUp_Clicked" />
+                </Grid>
+            </Grid>
+        <!--</StackLayout>-->
     </StackLayout>
 </ContentPage>

@@ -105,10 +105,55 @@ namespace GreenWorldApp
                 };
                 db.Insert(completedTask);
             }
-            await DisplayAlert(null, "In total, you have submitted " + selectedList.Count + " tasks today", "OK");
-            await Navigation.PopAsync();
+            int submittedTasksCount = db.Table<UserTask>().Count();
+
+            string submittedTasksQualifier = selectedList.Count == 1 ? "task" : "tasks";
+            string existingTasksQualifier = submittedTasksCount == 1 ? "task" : "tasks";
+            string remainingTasksQualifier = (10 - submittedTasksCount) == 1 ? "task" : "tasks";
+
+            if (selectedList.Count == 0)
+            {
+                await DisplayAlert("Submission Failed", "No tasks selected, please check some boxes!", "ok");
+            }
+
+            else if (submittedTasksCount < 10)
+            {
+                
+                await DisplayAlert(null, "You have just recorded " + selectedList.Count + " " +
+                                         submittedTasksQualifier + "." + "\nYou now have accumulated " + submittedTasksCount +
+                                         " "+ existingTasksQualifier + ".\n" + (10 - submittedTasksCount) + " " + remainingTasksQualifier +
+                                         "  left to qualify for a voucher.", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Congratulations!", "You have qualified for a voucher!", "Ok");
+            }
+
+            
+            //Interesting how you can reach any page in the navigation stack in code!!
+            var currentPage = Application.Current.MainPage.Navigation.NavigationStack.LastOrDefault();
+            await Navigation.PushAsync(new RecordTaskPage());
+            Navigation.RemovePage(currentPage);
 
 
+
+        }
+
+        private async void Profile_Button_OnClicked(object sender, EventArgs e)
+        {
+            App app = (App)Application.Current;
+            var currentUserId = app.CurrentUserId;
+            await Navigation.PushAsync(new ProfilePage(currentUserId));
+        }
+
+        private async void List_Button_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MainPage());
+        }
+
+        private async void BackToMainPageButton_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new MainMenu());
         }
     }
 }

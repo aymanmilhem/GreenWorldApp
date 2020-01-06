@@ -4,13 +4,111 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="GreenWorldApp.MainPage">
+             x:Class="GreenWorldApp.MainPage"
+             Title="Eco-friendly Tips">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+    <StackLayout HorizontalOptions="Center">
+        <StackLayout>
+            <Grid BackgroundColor="Black"
+                  HorizontalOptions="Fill">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1"
+                       Text="A Greener Pale Blue Dot"
+                       TextColor="#35C393"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center" />
+                <Image Grid.Column="2"
+                       Source="UnitedOnEarth"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"
+                       Aspect="AspectFit"
+                       WidthRequest="60"
+                       HeightRequest="40" />
+            </Grid>
+        </StackLayout>
+        <ListView ItemsSource="{Binding Tips}"
+                  HasUnevenRows="True"
+                  ItemSelected="OnListViewItemSelected"
+                  ItemTapped="OnListViewItemTapped">
+            <ListView.ItemTemplate >
+                <DataTemplate >
+                    <ViewCell >
+                        <Grid Padding="5,5,0,5"
+                              Margin="0,0,0,5"
+                              BackgroundColor="AliceBlue">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Row="0"
+                                   Grid.RowSpan="3"
+                                   Source="{Binding ImageUrl}"
+                                   Aspect="AspectFill"
+                                   HeightRequest="80"
+                                   WidthRequest="80" />
+                            <Label Grid.Column="1"
+                                   Grid.Row="0"
+                                   Text="{Binding Title}"
+                                   FontAttributes="Bold"
+                                   TextDecorations="Underline"
+                                   TextColor="ForestGreen"
+                                   FontSize="Default"
+                                   HorizontalOptions="Center"/>
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Grid.ColumnSpan="2"
+                                   Text="{Binding Text}"
+                                   VerticalOptions="End" />
+                            <StackLayout Grid.Row="2"
+                                         Grid.Column="1"
+                                         Grid.ColumnSpan="2"
+                                         Orientation="Horizontal"
+                                         HorizontalOptions="Center">
+                                <Label 
+                                   Text="{Binding LinkUrl}"
+                                   TextColor="Blue"
+                                   TextDecorations="Underline"
+                                   x:Name="LinkLabel" 
+                                    IsVisible="False"/>
+
+                                <Button 
+                                    Text="Learn More"
+                                    x:Name="LinkButton"
+                                    Clicked="OnLinkButtonClicked"
+                                    BorderColor="CornflowerBlue"
+                                    CornerRadius="10"/>
+                            </StackLayout>
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="CenterAndExpand">
+            <Button Text="Profile"
+                    HorizontalOptions="CenterAndExpand"
+                    Clicked="OnProfileButtonClicked"/>
+            <Button Text="Record Tasks"
+                    x:Name="BottomBarRecordTaskButton"
+                    HorizontalOptions="CenterAndExpand"
+                    Clicked="OnBottomBarRecordTaskButton"/>
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>

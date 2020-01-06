@@ -25,22 +25,11 @@ namespace GreenWorldApp
 
             var db = new SQLiteConnection(_dbPath);
 
-            StackLayout stackLayout = new StackLayout();
-            _listView = new ListView();
-            _listView.ItemsSource = db.Table<User>().OrderBy(x => x.Email).ToList();
-            _listView.ItemSelected += User_List_Item_Selected;
-            stackLayout.Children.Add(_listView);
+            var maxPk = db.Table<User>().OrderByDescending(x => x.Id).FirstOrDefault();
 
-            _deleteButton = new Button();
-            _deleteButton.Text = "Delete";
-            _deleteButton.IsEnabled = false;
-            _deleteButton.Clicked += User_List_deleteButton_Clicked;
-            stackLayout.Children.Add(_deleteButton);
-
-            Content = stackLayout;
         }
 
-        private async void User_List_deleteButton_Clicked(object sender, EventArgs e)
+        private void User_List_deleteButton_Clicked(object sender, EventArgs e)
         {
             var db = new SQLiteConnection(_dbPath);
 
@@ -66,6 +55,32 @@ namespace GreenWorldApp
             _user = e.SelectedItem as User;
 
             
+        }
+
+        protected override void OnAppearing()
+        {
+            var db = new SQLiteConnection(_dbPath);
+            if (db.Table<User>().Count() == 0)
+            {
+                DisplayAlert("Sorry", "No Users to display", "Ok");
+                Navigation.PopAsync();
+            }
+            else
+            {
+                StackLayout stackLayout = new StackLayout();
+                _listView = new ListView();
+                _listView.ItemsSource = db.Table<User>().OrderBy(x => x.Email).ToList();
+                _listView.ItemSelected += User_List_Item_Selected;
+                stackLayout.Children.Add(_listView);
+
+                _deleteButton = new Button();
+                _deleteButton.Text = "Delete";
+                _deleteButton.IsEnabled = false;
+                _deleteButton.Clicked += User_List_deleteButton_Clicked;
+                stackLayout.Children.Add(_deleteButton);
+
+                Content = stackLayout;
+            }
         }
     }
 }

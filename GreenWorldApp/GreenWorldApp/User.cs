@@ -15,6 +15,13 @@ namespace GreenWorldApp
 
         public string Password { get; set; }
 
+        public bool IsCurrent { get; set; }
+
+        public User()
+        {
+            
+        }
+
         public override string ToString()
         {
             return Email + ", " + Password;

@@ -5,8 +5,36 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:greenWorldApp="clr-namespace:GreenWorldApp;assembly=GreenWorldApp"
              mc:Ignorable="d"
-             x:Class="GreenWorldApp.RecordTaskPage">
+             x:Class="GreenWorldApp.RecordTaskPage"
+             Title="Record Tasks">
     <StackLayout>
+        <StackLayout>
+            <Grid BackgroundColor="Black"
+                  HorizontalOptions="Fill">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1"
+                       Text="A Greener Pale Blue Dot"
+                       TextColor="#35C393"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center" />
+                <Image Grid.Column="2"
+                       Source="UnitedOnEarth"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center"
+                       Aspect="AspectFit"
+                       WidthRequest="60"
+                       HeightRequest="40" />
+            </Grid>
+        </StackLayout>
         <ListView ItemsSource="{Binding AllTasks}"
             HasUnevenRows="True">
             <ListView.ItemTemplate>
@@ -35,18 +63,25 @@
                 
             </ListView.ItemTemplate>
         </ListView>
-        <StackLayout>
-            <Button Text="Submit" 
-                    CornerRadius="11"
-                    FontAttributes="Bold"
-                    Clicked="Button_Submit_Record_Tasks_Clicked"/>
-        </StackLayout>
+
         <StackLayout Orientation="Horizontal"
-                     HorizontalOptions="CenterAndExpand"
-                     Margin="5,10,5,0">
-        <Button Text="Profile"/>
-        <Button Text="List"/>
-        <Button Text="Record Task"/>
+                     HorizontalOptions="Center"
+                     Spacing="-4">
+            <Button Text="Submit"
+                    Clicked="Button_Submit_Record_Tasks_Clicked"
+                    HorizontalOptions="Center" />
+            <Button Text="Profile"
+                    x:Name="Profile_Button"
+                    Clicked="Profile_Button_OnClicked"
+                    HorizontalOptions="Center"/>
+            <Button Text="List"
+                    x:Name="List_Button"
+                    Clicked="List_Button_OnClicked"
+                    HorizontalOptions="Center"/>
+            <Button Text="Home" 
+                    x:Name="BackToMainPageButton"
+                    Clicked="BackToMainPageButton_OnClicked"
+                    HorizontalOptions="Center"/>
         </StackLayout>
     </StackLayout>
 </ContentPage>

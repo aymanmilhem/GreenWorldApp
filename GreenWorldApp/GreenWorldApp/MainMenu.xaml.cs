@@ -15,6 +15,7 @@ namespace GreenWorldApp
         public MainMenu()
         {
             InitializeComponent();
+            //NavigationPage.SetHasNavigationBar(this, false);
         }
         private async void MainPageLoginButton_Clicked(object sender, EventArgs e)
         {
@@ -23,7 +24,18 @@ namespace GreenWorldApp
 
         private async void MainPageProfileButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new  ProfilePage());
+            App app = (App)Application.Current;
+            var currentUserId = app.CurrentUserId;
+
+            if (app.IsLoggedIn)
+            {
+                await Navigation.PushAsync(new ProfilePage(currentUserId: currentUserId));
+            }
+            else
+            {
+                await Navigation.PushAsync(new LoginPage());
+            }
+            
         }
 
         private async void MainPageRecordTasksButton_Clicked(object sender, EventArgs e)

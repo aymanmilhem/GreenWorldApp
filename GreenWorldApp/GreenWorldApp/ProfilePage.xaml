@@ -5,23 +5,81 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:greenWorldApp="clr-namespace:GreenWorldApp;assembly=GreenWorldApp"
              mc:Ignorable="d"
-             x:Class="GreenWorldApp.ProfilePage">
+             x:Class="GreenWorldApp.ProfilePage"
+             Title="Profile">
     <ContentPage.Content>
         <StackLayout x:Name="MainStackLayout">
+            <StackLayout>
+                <Grid BackgroundColor="Black"
+                      HorizontalOptions="Fill">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1"
+                           Text="A Greener Pale Blue Dot"
+                           TextColor="#35C393"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="Center" />
+                    <Image Grid.Column="2"
+                           Source="UnitedOnEarth"
+                           HorizontalOptions="End"
+                           VerticalOptions="Center"
+                           Aspect="AspectFit"
+                           WidthRequest="60"
+                           HeightRequest="40" />
+                </Grid>
+            </StackLayout>
             <StackLayout x:Name="TopHorizontalStackLayout"
                          Orientation="Horizontal">
-                <Image Source="genericProfileImage"/>
+                <Image Source="profile_pic"
+                       WidthRequest="100"
+                       HeightRequest="100"
+                       Aspect="AspectFill"/>
                 <StackLayout>
-                    <Label Text="Name"/>
-                    <Label Text="Name"/>
-                    <Label Text="Name"/>
-                    <Label Text="Name"/>
-                    <Label Text="Name"/>
+                    <BoxView BackgroundColor="Transparent"/>
+                </StackLayout>
+                <StackLayout>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0"
+                               Grid.Column="0"
+                               Text="Name" />
+                        <Label x:Name="NameLabel"
+                            Grid.Row="0"
+                               Grid.Column="1"
+                               Text="" />
+                        <Label Grid.Row="1"
+                               Grid.Column="0"
+                               Text="Phone #" />
+                        <Label Grid.Row="1"
+                               Grid.Column="1"
+                               Text="02102528624" />
+                        <Label Grid.Row="2"
+                               Grid.Column="0"
+                               Text="Email" />
+                        <Label Grid.Row="2"
+                               Grid.Column="1"
+                               Text="jordanguide@gmail.com" />
+                    </Grid>
                 </StackLayout>
             </StackLayout>
             <StackLayout >
-                <Grid Padding="5,5,0,5"
-                      Margin="0,0,0,5"
+                <Grid Padding="5,0,10,0"
                       BackgroundColor="Bisque">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -61,34 +119,52 @@
                                        Grid.Column="0"
                                        Text="{Binding Name}"
                                        FontAttributes="Bold"
-                                       TextDecorations="Underline"
                                        TextColor="ForestGreen"
-                                       FontSize="Default"
                                        HorizontalOptions="Start"/>
                                 <Label Grid.Row="0"
                                    Grid.Column="1"
                                    Text="{Binding CompletionDate, StringFormat='{0:dd/MM/yyyy}'}"
-                                   HorizontalOptions="End" />
+                                   HorizontalOptions="End"
+                                   Padding="0,0,10,0"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <!--<StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Task"/>
-                    <Label Text="Date"/>
-                </StackLayout>
-                <Label Text="WHY??"/>
-                <Label Text="{Binding AllUserCompletedTasks[2].CompletionDate}"/>
-            </StackLayout>-->
-            <StackLayout Orientation="Horizontal">
-                <Button Text=""/>
-                <Button Text=""/>
-                <Button Text=""/>
-                <Button Text="Delete All"
-                        Clicked="Button_Delete_All_Tasks"/>
+            <StackLayout Orientation="Horizontal"
+                         BackgroundColor="Black">
+                <Label Text="Task Count"
+                       Padding="20,0,0,0"
+                       TextColor="Bisque"/>
+                <Label Text="{Binding AllUserCompletedTasksCount}"
+                       x:Name="CompletedTasksCountLabel"
+                       HorizontalOptions="StartAndExpand"
+                       TextColor="Bisque"/>
+
+                <Label Text="Voucher Count "
+                       TextColor="Bisque"/>
+                <Label Text="{Binding UserVoucherCount}"
+                       x:Name="VoucherCountLabel"
+                       HorizontalOptions="End"
+                       Padding="0,0,30,0"
+                       TextColor="Bisque"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center"
+                         Spacing="-4">
+                <Button Text="Claim"
+                        x:Name="Claim_Vouchers_Button"
+                        Clicked="Button_Claim_Due_Vouchers"
+                        HorizontalOptions="Center"/>
+                
+                <Button Text="Record Tasks"
+                        Clicked="Button_Record_More_Tasks"
+                        HorizontalOptions="Center"/>
+                <Button Text="Home"
+                        x:Name="BackToMainButton"
+                        Clicked="Back_To_Main_Button_OnClicked"
+                        HorizontalOptions="Center"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

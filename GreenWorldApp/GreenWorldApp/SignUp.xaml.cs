@@ -13,6 +13,7 @@ namespace GreenWorldApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SignUp : ContentPage
     {
+        private Entry _entry;
         private Entry _emailEntry;
         private Entry _passwordEntry;
         private Entry _passwordVerificationEntry;
@@ -32,50 +33,72 @@ namespace GreenWorldApp
         {
             var db = new SQLiteConnection(_dBPath);
             db.CreateTable<User>();
+            var userDbCount = db.Table<User>().Count();
+            //await DisplayAlert(null, userDbCount.ToString(), "ok");
 
             var maxPK = db.Table<User>().OrderByDescending(c => c.Id).FirstOrDefault();
 
-            _signUpButton = sender as Button;
-            StackLayout parentElement = _signUpButton.Parent as StackLayout;
-            _emailEntry = parentElement.Children[1] as Entry;
-            _passwordEntry = parentElement.Children[2] as Entry;
-            _passwordVerificationEntry = parentElement.Children[3] as Entry;
-
-            _passwordMatches = (_passwordEntry.Text == _passwordVerificationEntry.Text);
+            _passwordMatches = (SignUpPasswordEntry.Text == SignUpPasswordVerificationEntry.Text);
 
             List<User> listToCompare = db.Table<User>().OrderBy(x => x.Id).ToList();
 
-            for (int i = 0; i < listToCompare.Count(); i++)
+            if (userDbCount > 0)
             {
 
-                if ((listToCompare[i].Email) == (_emailEntry.Text))
+                for (int i = 0; i < listToCompare.Count(); i++)
                 {
-                    _isInTable = true;
+                    if ((listToCompare[i].Email) == (SignUpEmailEntry.Text))
+                    {
+                        _isInTable = true;
+                    }
                 }
 
-            }
-
-            if (_isInTable)
-            {
-                await DisplayAlert("Error",
-                    "Cannot sign up at this time, please use a different email as a unique identifier", "Ok");
-            }
-            else if (!_passwordMatches)
-            {
-                await DisplayAlert("Error", "Password does not match, please try again", "OK");
+                if (_isInTable)
+                {
+                    await DisplayAlert("Error",
+                        "Cannot sign up at this time, please use a different email as a unique identifier", "Ok");
+                }
+                else if (!_passwordMatches)
+                {
+                    await DisplayAlert("Error", "Password does not match, please try again", "OK");
+                }
+                else
+                {
+                    User user = new User
+                    {
+                        Id = (maxPK == null ? 1 : maxPK.Id + 1),
+                        Email = SignUpEmailEntry.Text,
+                        Password = SignUpPasswordEntry.Text
+                    };
+                    db.Insert(user);
+                    await DisplayAlert("Success", $"User: {SignUpEmailEntry.Text} added", "Back");
+                    await Navigation.PopAsync();
+                }
             }
             else
             {
-                User user = new User
+                //await DisplayAlert(null, "Dropping Table", "OK");
+                db.DropTable<User>();
+                db.CreateTable<User>();
+                //await DisplayAlert(null, "Table created", "OK");
+                if (_passwordMatches)
                 {
-                    Id = (maxPK == null ? 1 : maxPK.Id + 1),
-                    Email = _emailEntry.Text,
-                    Password = _passwordEntry.Text
-                };
-                db.Insert(user);
-                await DisplayAlert("Success", "User with email: " + _emailEntry.Text + " has been added", "Back To Menu");
-                await Navigation.PopAsync();
+                    db.Table<User>();
+                    User user = new User
+                    {
+                        Email = SignUpEmailEntry.Text,
+                        Password = SignUpPasswordEntry.Text
+                    };
+
+                    db.Insert(user);
+                    await DisplayAlert("Success", $"User: {SignUpEmailEntry.Text} added", "Back");
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Password does not match, please try again", "OK");
+                }
             }
+            await Navigation.PopAsync();
         }
     }
 }

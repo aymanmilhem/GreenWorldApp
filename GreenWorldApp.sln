@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenWorldApp.Android", "GreenWorldApp\GreenWorldApp.Android\GreenWorldApp.Android.csproj", "{3DB28475-D8CE-4BC5-ACF2-ECDE720F764A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreenWorldApp", "GreenWorldApp\GreenWorldApp\GreenWorldApp.csproj", "{69023190-4E68-49AF-B1EA-92EF3BA0093A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GreenWorldApp", "GreenWorldApp\GreenWorldApp\GreenWorldApp.csproj", "{69023190-4E68-49AF-B1EA-92EF3BA0093A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

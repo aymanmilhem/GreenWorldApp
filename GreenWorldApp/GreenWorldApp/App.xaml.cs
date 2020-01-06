@@ -6,6 +6,9 @@ namespace GreenWorldApp
 {
     public partial class App : Application
     {
+
+        public bool IsLoggedIn { get; set; }
+        public int CurrentUserId { get; set; }
         public App()
         {
             InitializeComponent();

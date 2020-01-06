@@ -14,7 +14,6 @@ namespace GreenWorldApp
     public partial class ClientsCompletedTaskList : ContentPage
     {
         private ListView _listView;
-        private Task _task;
 
         private string _dbPath = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), "myBD.db3");
 

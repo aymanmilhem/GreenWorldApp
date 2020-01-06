@@ -4,39 +4,107 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="GreenWorldApp.MainMenu">
-        <StackLayout>
-            <StackLayout HorizontalOptions="Center"
-                         VerticalOptions="Center">
-            <Image Source="genericProfileImage"
-                   Aspect="AspectFill"
-                   HeightRequest="200"
-                   WidthRequest="200"/>
+             x:Class="GreenWorldApp.MainMenu"
+             Title="Green World">
+    <NavigationPage.TitleView>
+        <Label Text="Green World"
+               HorizontalOptions="Center"
+               TextColor="White"
+               FontAttributes="Bold"
+               FontSize="Default"/>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout Spacing="-2">
+            <StackLayout>
+                <Grid BackgroundColor="Black"
+                      HorizontalOptions="Fill">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="1"
+                           Text="A Greener Pale Blue Dot"
+                           TextColor="#35C393"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="Center" />
+                    <Image Grid.Column="2"
+                           Source="UnitedOnEarth"
+                           HorizontalOptions="End"
+                           VerticalOptions="Center"
+                           Aspect="AspectFit"
+                           WidthRequest="60"
+                           HeightRequest="40" />
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="4*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Row="0"
+                           Grid.Column="1"
+                           Source="MainTheme" Aspect="AspectFill" />
+                </Grid>
             </StackLayout>
 
-            <StackLayout VerticalOptions="EndAndExpand">
-                <Button x:Name="MainPageLoginButton"
-                        Text="Login"
-                        Clicked="MainPageLoginButton_Clicked" />
-                <Button x:Name="MainPageSignUpButton"
-                        Text="Sign Up"
-                        Clicked="MainPageSignUpButton_OnClicked" />
-                <Button x:Name="MainPageProfileButton"
-                        Text="Profile"
-                        Clicked="MainPageProfileButton_Clicked"/>
-                <Button x:Name="MainPageRecordTasksButton"
-                        Text="Record Tasks"
-                        Clicked="MainPageRecordTasksButton_Clicked"/>
-                <Button x:Name="MainPageBrowseAsGuestButton"
-                        Text="Browse List as a guest"
-                        Clicked="MainPageBrowseAsGuestButton_Clicked"/>
-                <Button x:Name="MainPageUserListButton"
-                        Text="User List"
-                        FontAttributes="Bold"
-                        BackgroundColor="Aquamarine"
-                        Clicked="MainPageUserListButton_Clicked"/>
-        </StackLayout>
-            
-
-        </StackLayout>
+                <Grid VerticalOptions="CenterAndExpand"
+                      RowSpacing="-4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="6*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0"
+                            Grid.Column="1"
+                            x:Name="MainPageLoginButton"
+                            Text="Login"
+                            Clicked="MainPageLoginButton_Clicked"/>
+                    <Button Grid.Row="1"
+                            Grid.Column="1"
+                            x:Name="MainPageSignUpButton"
+                            Text="Sign Up"
+                            Clicked="MainPageSignUpButton_OnClicked" />
+                    <Button Grid.Row="2"
+                            Grid.Column="1"
+                            x:Name="MainPageProfileButton"
+                            Text="Profile"
+                            Clicked="MainPageProfileButton_Clicked"/>
+                    <Button Grid.Row="3"
+                            Grid.Column="1"
+                            x:Name="MainPageRecordTasksButton"
+                            Text="Record Tasks"
+                            Clicked="MainPageRecordTasksButton_Clicked"/>
+                    <Button Grid.Row="4"
+                            Grid.Column="1"
+                            x:Name="MainPageBrowseAsGuestButton"
+                            Text="List"
+                            Clicked="MainPageBrowseAsGuestButton_Clicked"/>
+                    <Button Grid.Row="5"
+                            Grid.Column="1"
+                            x:Name="MainPageUserListButton"
+                            Text="User List"
+                            FontAttributes="Bold"
+                            BackgroundColor="Aquamarine"
+                            Clicked="MainPageUserListButton_Clicked"
+                            IsVisible="True" />
+                </Grid>
+            </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
